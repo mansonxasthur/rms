@@ -270,7 +270,7 @@ class CreateOrderTest extends TestCase
             ],
         ]);
 
-        $res->assertStatus(Response::HTTP_MOVED_PERMANENTLY);
+        $res->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $res->assertJsonFragment(['message' => 'Insufficient ingredients to prepare the order!']);
 
         $this->assertDatabaseCount('orders', 0);

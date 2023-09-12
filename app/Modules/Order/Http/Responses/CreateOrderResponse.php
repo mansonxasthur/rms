@@ -34,7 +34,7 @@ class CreateOrderResponse extends Response
     protected function handleErrorResponse(Throwable $e): bool|JsonResponse
     {
         if ($e instanceof InsufficientIngredientStockLevel) {
-            return response()->json(['message' => 'Insufficient ingredients to prepare the order!',], SymphonyResponse::HTTP_MOVED_PERMANENTLY);
+            return response()->json(['message' => 'Insufficient ingredients to prepare the order!',], SymphonyResponse::HTTP_UNPROCESSABLE_ENTITY);
         }
         return parent::handleErrorResponse($e);
     }
