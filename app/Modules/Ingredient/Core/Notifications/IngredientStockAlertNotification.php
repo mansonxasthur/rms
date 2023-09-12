@@ -40,6 +40,6 @@ class IngredientStockAlertNotification extends Notification implements ShouldQue
 
     public function getMessageBody(): string
     {
-        return sprintf('Ingredient %s stock level under threshold with percentage amount of %%%d', $this->inventory->ingredient->name, $this->inventory->current_level_percentage);
+        return sprintf('Ingredient %s stock level under threshold with percentage amount of %%%d, try to replenish your stock.', $this->inventory->ingredient->name, $this->inventory->current_level_percentage);
     }
 }
