@@ -19,7 +19,7 @@
 - Once images are built and started run `docker compose exec api bash`
 - Inside the container run `composer install && php artisan migrate --seed`
 - Seeding in the previous step just for the purpose of testing on Postman if needed.
-- Now off you go.
+- Application now running on `http://localhost:8080`.
 
 <hr>
 
