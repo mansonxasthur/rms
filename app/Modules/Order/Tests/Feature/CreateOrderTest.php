@@ -2,18 +2,17 @@
 
 namespace App\Modules\Order\Tests\Feature;
 
-use App\Modules\Ingredient\Core\Notifications\IngredientStockAlertNotification;
-use App\Modules\Ingredient\Domain\Entities\Ingredient;
-use App\Modules\Ingredient\Domain\Entities\Inventory;
-use App\Modules\Ingredient\Domain\Entities\StockAlert;
-use App\Modules\Order\Core\Events\OrderCreated;
-use App\Modules\Order\Core\Exceptions\InsufficientIngredientStockLevel;
-use App\Modules\Order\Domain\Enum\Status;
-use App\Modules\Product\Domain\Entities\Product;
+use Tests\TestCase;
 use Illuminate\Support\Facades\Event;
+use App\Modules\Order\Domain\Enum\Status;
 use Illuminate\Support\Facades\Notification;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\TestCase;
+use App\Modules\Order\Core\Events\OrderCreated;
+use App\Modules\Product\Domain\Entities\Product;
+use App\Modules\Ingredient\Domain\Entities\Inventory;
+use App\Modules\Ingredient\Domain\Entities\Ingredient;
+use App\Modules\Ingredient\Domain\Entities\StockAlert;
+use App\Modules\Ingredient\Core\Notifications\IngredientStockAlertNotification;
 
 class CreateOrderTest extends TestCase
 {

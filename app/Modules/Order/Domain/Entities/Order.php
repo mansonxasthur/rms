@@ -2,14 +2,14 @@
 
 namespace App\Modules\Order\Domain\Entities;
 
-use App\Modules\Order\Domain\Database\Factories\OrderFactory;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use App\Modules\Order\Domain\Enum\Status;
 use App\Modules\Product\Domain\Entities\Product;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
+use App\Modules\Order\Domain\Database\Factories\OrderFactory;
 
 /**
  * @property int $id

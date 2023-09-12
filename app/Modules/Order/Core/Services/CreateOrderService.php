@@ -2,23 +2,22 @@
 
 namespace App\Modules\Order\Core\Services;
 
-use App\Modules\Ingredient\Core\Services\UpdateCurrentStockLevelService;
-use App\Modules\Order\Domain\Entities\Order;
-use App\Modules\Order\Domain\Enum\Status;
-use App\Modules\Order\Domain\Repositories\OrderRepository;
-use App\Modules\Product\Domain\Entities\Product;
-use App\Modules\Product\Domain\Repositories\ProductRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use App\Modules\Order\Domain\Enum\Status;
+use App\Modules\Order\Domain\Entities\Order;
+use App\Modules\Product\Domain\Entities\Product;
+use App\Modules\Order\Domain\Repositories\OrderRepository;
+use App\Modules\Product\Domain\Repositories\ProductRepository;
+use App\Modules\Ingredient\Core\Services\UpdateCurrentStockLevelService;
 
 final class CreateOrderService
 {
     public function __construct(
-        private readonly OrderRepository                $orderRepository,
-        private readonly ProductRepository              $productRepository,
+        private readonly OrderRepository $orderRepository,
+        private readonly ProductRepository $productRepository,
         private readonly UpdateCurrentStockLevelService $currentStockLevelService,
-    )
-    {
+    ) {
     }
 
     public function create(array $orderProducts): Order
@@ -44,6 +43,7 @@ final class CreateOrderService
                     $this->currentStockLevelService->handle($ingredient, $requiredIngredientAmount);
                 }
             }
+
             return $order;
         });
     }
@@ -53,7 +53,7 @@ final class CreateOrderService
         return $products->reduce(function (array $list, Product $product) use ($orderProducts) {
             $list[$product->id] = [
                 'unit_price' => $product->price,
-                'quantity'   => $orderProducts[$product->id]['quantity'],
+                'quantity' => $orderProducts[$product->id]['quantity'],
             ];
 
             return $list;

@@ -2,12 +2,12 @@
 
 namespace App\Modules\Ingredient\Core\Listeners;
 
-use App\Modules\Ingredient\Core\Events\InventoryUnderThreshold;
-use App\Modules\Ingredient\Domain\Entities\Ingredient;
-use App\Modules\Ingredient\Domain\Entities\Inventory;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Modules\Order\Core\Events\OrderCreated;
 use App\Modules\Product\Domain\Entities\Product;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Modules\Ingredient\Domain\Entities\Inventory;
+use App\Modules\Ingredient\Domain\Entities\Ingredient;
+use App\Modules\Ingredient\Core\Events\InventoryUnderThreshold;
 
 class CheckIngredientStockLevel implements ShouldQueue
 {

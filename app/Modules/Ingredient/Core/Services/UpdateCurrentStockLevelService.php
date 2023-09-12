@@ -2,10 +2,10 @@
 
 namespace App\Modules\Ingredient\Core\Services;
 
-use App\Modules\Ingredient\Domain\Entities\Ingredient;
-use App\Modules\Ingredient\Domain\Entities\Inventory;
-use App\Modules\Order\Core\Exceptions\InsufficientIngredientStockLevel;
 use Throwable;
+use App\Modules\Ingredient\Domain\Entities\Inventory;
+use App\Modules\Ingredient\Domain\Entities\Ingredient;
+use App\Modules\Order\Core\Exceptions\InsufficientIngredientStockLevel;
 
 final class UpdateCurrentStockLevelService
 {
@@ -24,7 +24,7 @@ final class UpdateCurrentStockLevelService
 
             return $ingredient->inventory;
         } catch (Throwable $e) {
-            if ($e->getCode() === "22003") {
+            if ($e->getCode() === '22003') {
                 throw new InsufficientIngredientStockLevel($ingredient->inventory, $requiredIngredientAmount, $e->getCode());
             }
             throw $e;
