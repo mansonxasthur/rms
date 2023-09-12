@@ -110,7 +110,7 @@
 }
 ```
 
-##### Insufficient ingredients `301`:
+##### Insufficient ingredients `422`:
 ```json
 {
     "message": "Insufficient ingredients to prepare the order!"
