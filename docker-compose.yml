@@ -1,0 +1,52 @@
+version: '3.8'
+
+######### Services ###################################
+
+services:
+    # Server container
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./:/var/www/api
+            - ./docker/nginx/logs:/var/log/nginx
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            api:
+                condition: service_started
+        ports:
+            - "8080:80"
+
+    # PHP FastCGI Process Manager container
+    api:
+        build:
+            context: .
+            dockerfile: docker/api/Dockerfile
+        depends_on:
+            db:
+                condition: service_started
+        volumes:
+            - .:/var/www/api
+
+    # RMS database
+    db:
+        image: mysql:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_DATABASE: "rms"
+            MYSQL_USER: "rms"
+            MYSQL_PASSWORD: "rms"
+
+    # RMS testing database
+    db_test:
+        image: mysql:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_DATABASE: "rms"
+            MYSQL_USER: "rms"
+            MYSQL_PASSWORD: "rms"
+
+    # Mailhog container (SMTP testing)
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - "8026:8025"
