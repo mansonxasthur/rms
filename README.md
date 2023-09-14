@@ -52,7 +52,7 @@
 ```
 
 #### Responses:
-##### Order created `200`:
+##### Order created `201`:
 ```json
 {
     "data": {
